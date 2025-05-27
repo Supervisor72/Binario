@@ -189,13 +189,8 @@
         
         <div class="form-container">
             <form id="salesForm">
-                
-                <div class="field-group">
-                    <div class="field-label">🚉 BINARIO (Nome Binario):</div>
-                    <input type="text" class="field-input" id="binario" name="binario" placeholder="Inserisci il nome del binario" required>
-                </div>
 
-                <div class="field-group">
+        <div class="field-group">
                     <div class="field-label">🏪 Punto Vendita:</div>
                     <select class="field-input" id="punto_vendita" name="punto_vendita" required>
                         <option value="">Seleziona il punto vendita</option>
@@ -206,8 +201,11 @@
                         <option value="CIVITANOVA">CIVITANOVA</option>
                         <option value="PESARO">PESARO</option>
                     </select>
-                    <div class="textarea-label">Dettagli sul punto vendita:</div>
-                    <textarea class="field-textarea" id="punto_vendita_note" name="punto_vendita_note" placeholder="Descrizione, caratteristiche, ubicazione, ecc..."></textarea>
+        </div>     
+                
+                <div class="field-group">
+                    <div class="field-label">🚉 BINARIO (Nome Binario):</div>
+                    <input type="text" class="field-input" id="binario" name="binario" placeholder="Inserisci il nome del binario" required>
                 </div>
 
                 <div class="field-group">
@@ -311,8 +309,8 @@
             
             // Aggiunta di ogni sezione con formattazione
             const sections = [
+                {label: "🏪 Punto Vendita", field: "punto_vendita", notes: "punto_vendita_note"},              
                 {label: "🚉 BINARIO (Nome Binario)", field: "binario"},
-                {label: "🏪 Punto Vendita", field: "punto_vendita", notes: "punto_vendita_note"},
                 {label: "🎯 Obiettivo = Destinazione", field: "obiettivo", notes: "obiettivo_note"},
                 {label: "📅 Data Raggiungimento Attesa", field: "data_raggiungimento", notes: "data_note"},
                 {label: "🧠 Strategia di vendita (Testa del treno)", field: "strategia", notes: "strategia_note"},
