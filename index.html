@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modulo Comunicazione Punti Vendita</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+
+        .form-container {
+            padding: 40px;
+        }
+
+        .field-group {
+            margin-bottom: 35px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            border-left: 5px solid #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .field-group:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .field-label {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .field-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e1e8ed;
+            border-radius: 8px;
+            font-size: 1em;
+            margin-bottom: 15px;
+            transition: border-color 0.3s ease;
+            font-family: inherit;
+        }
+
+        select.field-input {
+            background-color: white;
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23667eea'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 20px;
+            padding-right: 45px;
+        }
+
+        select.field-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .field-textarea {
+            width: 100%;
+            min-height: 80px;
+            max-height: 400px;
+            padding: 15px;
+            border: 2px solid #e1e8ed;
+            border-radius: 8px;
+            font-size: 1em;
+            font-family: inherit;
+            resize: none;
+            transition: all 0.3s ease;
+            overflow-y: hidden;
+        }
+
+        .field-textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .textarea-label {
+            font-size: 0.95em;
+            color: #6c757d;
+            margin-bottom: 8px;
+            font-style: italic;
+        }
+
+        .submit-container {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #e1e8ed;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 18px 50px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+            }
+            
+            .form-container {
+                padding: 20px;
+            }
+            
+            .field-group {
+                padding: 20px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚂 Modulo Strategia Punti Vendita</h1>
+            <p>Compila tutti i campi per definire la strategia del tuo binario commerciale</p>
+        </div>
+        
+        <div class="form-container">
+            <form id="salesForm">
+                
+                <div class="field-group">
+                    <div class="field-label">🚉 BINARIO (Nome Binario):</div>
+                    <input type="text" class="field-input" id="binario" name="binario" placeholder="Inserisci il nome del binario" required>
+                </div>
+
+                <div class="field-group">
+                    <div class="field-label">🏪 Punto Vendita:</div>
+                    <select class="field-input" id="punto_vendita" name="punto_vendita" required>
+                        <option value="">Seleziona il punto vendita</option>
+                        <option value="FANO">FANO</option>
+                        <option value="MONSANO">MONSANO</option>
+                        <option value="OSIMO">OSIMO</option>
+                        <option value="MACERATA">MACERATA</option>
+                        <option value="CIVITANOVA">CIVITANOVA</option>
+                        <option value="PESARO">PESARO</option>
+                    </select>
+                    <div class="textarea-label">Dettagli sul punto vendita:</div>
+                    <textarea class="field-textarea" id="punto_vendita_note" name="punto_vendita_note" placeholder="Descrizione, caratteristiche, ubicazione, ecc..."></textarea>
+                </div>
+
+                <div class="field-group">
+                    <div class="field-label">🎯 Obiettivo = Destinazione:</div>
+                    <input type="text" class="field-input" id="obiettivo" name="obiettivo" placeholder="Definisci l'obiettivo principale" required>
+                    <div class="textarea-label">Descrizione dell'obiettivo e risultati attesi:</div>
+                    <textarea class="field-textarea" id="obiettivo_note" name="obiettivo_note" placeholder="• Dettagli specifici dell'obiettivo&#10;• Metriche di successo&#10;• Benefici attesi"></textarea>
+                </div>
+
+                <div class="field-group">
+                    <div class="field-label">📅 Data Raggiungimento Attesa:</div>
+                    <input type="date" class="field-input" id="data_raggiungimento" name="data_raggiungimento" required>
+                    <div class="textarea-label">Timeline e milestone intermedi:</div>
+                    <textarea class="field-textarea" id="data_note" name="data_note" placeholder="• Tappe intermedie&#10;• Scadenze importanti&#10;• Fattori critici per il timing"></textarea>
+                </div>
+
+                <div class="field-group">
+                    <div class="field-label">🧠 Strategia di vendita (Testa del treno):</div>
+                    <input type="text" class="field-input" id="strategia" name="strategia" placeholder="Strategia principale di vendita" required>
+                    <div class="textarea-label">Dettagli della strategia:</div>
+                    <textarea class="field-textarea" id="strategia_note" name="strategia_note" placeholder="• Approccio commerciale&#10;• Tecniche di vendita&#10;• Positioning del prodotto&#10;• Target di riferimento"></textarea>
+                </div>
+
+                <div class="field-group">
+                    <div class="field-label">🧍‍♂️ Ruoli e responsabilità (Macchinisti):</div>
+                    <input type="text" class="field-input" id="ruoli" name="ruoli" placeholder="Definizione dei ruoli principali" required>
+                    <div class="textarea-label">Dettagli su ruoli e responsabilità:</div>
+                    <textarea class="field-textarea" id="ruoli_note" name="ruoli_note" placeholder="• Responsabile vendite: [nome e compiti]&#10;• Team di supporto: [ruoli]&#10;• Responsabilità specifiche&#10;• Catena di comando"></textarea>
+                </div>
+
+                <div class="field-group">
+                    <div class="field-label">📅 Routine operativa (Orario treni):</div>
+                    <input type="text" class="field-input" id="routine" name="routine" placeholder="Definisci la routine operativa" required>
+                    <div class="textarea-label">Dettagli della routine:</div>
+                    <textarea class="field-textarea" id="routine_note" name="routine_note" placeholder="• Orari di lavoro&#10;• Attività quotidiane&#10;• Procedure standard&#10;• Frequenza delle attività"></textarea>
+                </div>
+
+                <div class="field-group">
+                    <div class="field-label">📈 KPI intermedi (Stazioni del binario):</div>
+                    <input type="text" class="field-input" id="kpi" name="kpi" placeholder="Definisci i KPI principali" required>
+                    <div class="textarea-label">Dettagli sui KPI:</div>
+                    <textarea class="field-textarea" id="kpi_note" name="kpi_note" placeholder="• Vendite mensili: [target]&#10;• Numero clienti: [obiettivo]&#10;• Margine di profitto: [%]&#10;• Altri indicatori chiave"></textarea>
+                </div>
+
+                <div class="field-group">
+                    <div class="field-label">🛠️ Strumenti:</div>
+                    <input type="text" class="field-input" id="strumenti" name="strumenti" placeholder="Strumenti necessari" required>
+                    <div class="textarea-label">Dettagli sugli strumenti:</div>
+                    <textarea class="field-textarea" id="strumenti_note" name="strumenti_note" placeholder="• Software utilizzati&#10;• Materiali di vendita&#10;• Risorse tecniche&#10;• Budget disponibile"></textarea>
+                </div>
+
+                <div class="field-group">
+                    <div class="field-label">🔁 Ciclo di feedback continuo (Controlli Continui):</div>
+                    <input type="text" class="field-input" id="feedback" name="feedback" placeholder="Sistema di feedback" required>
+                    <div class="textarea-label">Dettagli sul sistema di feedback:</div>
+                    <textarea class="field-textarea" id="feedback_note" name="feedback_note" placeholder="• Frequenza dei controlli&#10;• Modalità di reporting&#10;• Criteri di valutazione&#10;• Azioni correttive"></textarea>
+                </div>
+
+                <div class="submit-container">
+                    <button type="submit" class="submit-btn">📧 Invia Modulo</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Funzione per auto-ridimensionare le textarea
+        function autoResize(textarea) {
+            textarea.style.height = 'auto';
+            textarea.style.height = Math.min(textarea.scrollHeight, 400) + 'px';
+        }
+
+        // Applica auto-resize a tutte le textarea
+        document.addEventListener('DOMContentLoaded', function() {
+            const textareas = document.querySelectorAll('.field-textarea');
+            
+            textareas.forEach(textarea => {
+                // Auto-resize durante la digitazione
+                textarea.addEventListener('input', function() {
+                    autoResize(this);
+                });
+                
+                // Auto-resize al caricamento se c'è già del contenuto
+                autoResize(textarea);
+                
+                // Auto-resize quando si incolla del testo
+                textarea.addEventListener('paste', function() {
+                    setTimeout(() => autoResize(this), 0);
+                });
+            });
+        });
+
+        document.getElementById('salesForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Raccolta dati dal modulo
+            const formData = new FormData(this);
+            
+            // Costruzione del messaggio email
+            let emailBody = "=== MODULO STRATEGIA PUNTI VENDITA ===\n\n";
+            
+            // Aggiunta di ogni sezione con formattazione
+            const sections = [
+                {label: "🚉 BINARIO (Nome Binario)", field: "binario"},
+                {label: "🏪 Punto Vendita", field: "punto_vendita", notes: "punto_vendita_note"},
+                {label: "🎯 Obiettivo = Destinazione", field: "obiettivo", notes: "obiettivo_note"},
+                {label: "📅 Data Raggiungimento Attesa", field: "data_raggiungimento", notes: "data_note"},
+                {label: "🧠 Strategia di vendita (Testa del treno)", field: "strategia", notes: "strategia_note"},
+                {label: "🧍‍♂️ Ruoli e responsabilità (Macchinisti)", field: "ruoli", notes: "ruoli_note"},
+                {label: "📅 Routine operativa (Orario treni)", field: "routine", notes: "routine_note"},
+                {label: "📈 KPI intermedi (Stazioni del binario)", field: "kpi", notes: "kpi_note"},
+                {label: "🛠️ Strumenti", field: "strumenti", notes: "strumenti_note"},
+                {label: "🔁 Ciclo di feedback continuo (Controlli Continui)", field: "feedback", notes: "feedback_note"}
+            ];
+            
+            sections.forEach(section => {
+                emailBody += `${section.label}:\n`;
+                emailBody += `${formData.get(section.field) || 'Non specificato'}\n`;
+                
+                if (section.notes) {
+                    const notes = formData.get(section.notes);
+                    if (notes && notes.trim()) {
+                        emailBody += `\nNote aggiuntive:\n${notes}\n`;
+                    }
+                }
+                emailBody += "\n" + "=".repeat(50) + "\n\n";
+            });
+            
+            emailBody += `\nModulo compilato in data: ${new Date().toLocaleString('it-IT')}\n`;
+            
+            // Creazione del link mailto
+            const subject = encodeURIComponent(`Modulo Strategia Punti Vendita - ${formData.get('binario') || 'Nuovo Binario'}`);
+            const body = encodeURIComponent(emailBody);
+            const mailtoLink = `mailto:d.pavoni@dml-italia.com?subject=${subject}&body=${body}`;
+            
+            // Apertura del client email
+            window.location.href = mailtoLink;
+            
+            // Messaggio di conferma
+            alert('Il tuo client email si aprirà automaticamente con il modulo compilato. Verifica i dati e invia l\'email.');
+        });
+    </script>
+</body>
+</html>
